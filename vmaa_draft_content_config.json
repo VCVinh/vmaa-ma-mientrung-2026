@@ -1,0 +1,88 @@
+{
+  "status": "HIGH_LUMINOSITY_PURPLE_COBALT_MASTER — Architecture of Value (6 Tonal Shades)",
+  "event": {
+    "organizer_code": "ORGANIZED BY VMAA · CENTRAL VIETNAM",
+    "organizer_full_vi": "HIỆP HỘI MUA BÁN VÀ SÁP NHẬP DOANH NGHIỆP VIỆT NAM",
+    "organizer_full_en": "VIETNAM MERGERS & ACQUISITIONS ASSOCIATION",
+    "central_concept": "Architecture of Value",
+    "title_line_1": "DIỄN ĐÀN M&A",
+    "title_line_2": "MIỀN TRUNG 2026",
+    "subtitle_sector": "REAL ESTATE — TECHNOLOGY",
+    "date": "13.12.2026",
+    "time": "13:30–17:30",
+    "location": "Đà Nẵng, Việt Nam",
+    "coordinates": "16.0544° N, 108.2022° E"
+  },
+  "color_spectrum": {
+    "base_obsidian": "#070D20",
+    "base_deep_navy": "#0A1628",
+    "primary_electric_cobalt": "#245BFF",
+    "mandatory_royal_purple": "#6B2D9B",
+    "mandatory_electric_violet": "#9B4DFF",
+    "mandatory_soft_lavender": "#E9D5FF",
+    "secondary_ice_cyan": "#63B4FF",
+    "secondary_magenta_edge": "#EC4899",
+    "core_specular_white": "#FFFFFF"
+  },
+  "tonal_variations": [
+    {
+      "id": "TONE_01_HERO_MASTER",
+      "name": "Royal Amethyst × Electric Cobalt Convergence",
+      "file": "01_VMAA_HERO_KEY_VISUAL_4K.png",
+      "typography": "Plus Jakarta Sans 800 + Luminous 2026 Outline",
+      "palette": ["#070D20", "#6B2D9B", "#9B4DFF", "#245BFF", "#E9D5FF"]
+    },
+    {
+      "id": "TONE_02_PRISMATIC_CAUSTICS",
+      "name": "Electric Violet × Prismatic Fluted Caustics",
+      "file": "OPT_02_Ascending_Equilibrium.png",
+      "typography": "Plus Jakarta Sans 800 + Luminous Script 'Miền Trung' + Fractional 20/26",
+      "palette": ["#070D20", "#9B4DFF", "#E9D5FF", "#245BFF", "#63B4FF"]
+    },
+    {
+      "id": "TONE_03_FUTURISTIC_CANTILEVERS",
+      "name": "Stretched Futuristic Display × Ascending Amethyst Cantilevers",
+      "file": "OPT_03_Coastal_Meridian_Contours.png",
+      "typography": "Unbounded 900 + Expanded Geometric Sans",
+      "palette": ["#080B24", "#245BFF", "#9B4DFF", "#EC4899", "#E9D5FF"]
+    },
+    {
+      "id": "TONE_04_ULTRAVIOLET_MERIDIAN",
+      "name": "Ultraviolet × Ice-Cyan Coastal Meridian Contours",
+      "file": "OPT_04_Luminous_Tri_Portal.png",
+      "typography": "Plus Jakarta Sans 800 + Chakra Petch 700 Condensed Futuristic",
+      "palette": ["#070D20", "#6B2D9B", "#9B4DFF", "#40E5FF", "#E9D5FF"]
+    },
+    {
+      "id": "TONE_05_IMPERIAL_ISOMETRIC",
+      "name": "Imperial Purple × Magenta-Cobalt Isometric Crystal Matrix",
+      "file": "OPT_05_Isometric_Deal_Matrix.png",
+      "typography": "Plus Jakarta Sans 800 + Magenta-Stroked 2026 Display",
+      "palette": ["#090822", "#6B2D9B", "#C026D3", "#EC4899", "#F5D0FE"]
+    },
+    {
+      "id": "TONE_06_HIGHKEY_AURORA",
+      "name": "High-Key Lavender Aurora × Electric Cobalt Stage Portal",
+      "file": "OPT_06_Fluted_Prism_Curtain.png",
+      "typography": "Plus Jakarta Sans 800 + Luminous Script + Unbounded 800",
+      "palette": ["#0A1230", "#9B4DFF", "#245BFF", "#00E5FF", "#FFFFFF"]
+    }
+  ],
+  "draft_speakers": [
+    {
+      "slot": "KEYNOTE 01",
+      "name": "[TS. NGUYỄN VĂN A — DRAFT NAME]",
+      "role": "Chủ tịch / Managing Partner · [Tên Quỹ Đầu tư / Tổ chức]"
+    },
+    {
+      "slot": "PANELIST 02",
+      "name": "[ÔNG TRẦN MINH B — DRAFT NAME]",
+      "role": "Tổng Giám đốc · [Tập đoàn Bất động sản Miền Trung]"
+    },
+    {
+      "slot": "PANELIST 03",
+      "name": "[BÀ LÊ HOÀNG C — DRAFT NAME]",
+      "role": "CEO & Co-Founder · [Nền tảng Công nghệ PropTech / AI]"
+    }
+  ]
+}

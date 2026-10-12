@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>VMAA M&A MIỀN TRUNG 2026 — Open-Source WebGL, GLSL Fluted Shader & Motion-Graphic Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@1,600;1,700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@200;300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  :root {
+    --obsidian: #070D20;
+    --navy: #141236;
+    --cobalt: #245BFF;
+    --violet: #9B4DFF;
+    --purple: #6B2D9B;
+    --lavender: #E9D5FF;
+    --ice: #63B4FF;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 100vw; height: 100vh; overflow: hidden;
+    background: var(--obsidian);
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    color: var(--white);
+    position: relative;
+    user-select: none;
+  }
+
+  /* Layer 0: High-Res 3D AI Plate with Smooth Crossfade */
+  #plate-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0.94;
+    filter: contrast(1.06) saturate(1.14);
+    transition: background-image 0.6s ease, opacity 0.5s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
+  }
+  #plate-veil {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 640px at 72% 46%, rgba(155,77,255,0.26) 0%, rgba(36,91,255,0.18) 48%, transparent 78%),
+      linear-gradient(90deg, rgba(7,11,28,0.86) 0%, rgba(16,14,44,0.56) 40%, rgba(16,14,44,0.06) 72%, rgba(0,0,0,0) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Layer 1: Three.js WebGL 3D Architectural Canvas */
+  #webgl-canvas {
+    position: absolute; inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* Layer 2: Procedural Fluted Glass Optical Refraction Overlay */
+  .fluted-glass-strip {
+    position: absolute; top: 0; bottom: 96px; right: 0; width: 28%;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(233,213,255,0.02) 0px,
+      rgba(155,77,255,0.07) 7px,
+      rgba(7,13,32,0.22) 14px,
+      rgba(36,91,255,0.05) 20px
+    );
+    backdrop-filter: blur(1.5px);
+    border-left: 1px solid rgba(233,213,255,0.22);
+    z-index: 4;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Layer 3: Main Stage Viewport Container (Never overlaps bottom controller) */
+  #stage-viewport {
+    position: absolute;
+    top: 28px; left: 44px; right: 44px; bottom: 108px;
+    border: 1px solid rgba(99,180,255,0.2);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  /* Top Header Bar (Clean, zero dashed boxes) */
+  .top-header {
+    height: 68px;
+    padding: 0 36px;
+    border-bottom: 1px solid rgba(99,180,255,0.16);
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(180deg, rgba(7,13,32,0.82) 0%, rgba(7,13,32,0.2) 100%);
+  }
+  .brand-mark {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .mono-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ice);
+  }
+  .corner-arrow-svg {
+    width: 30px; height: 30px;
+    stroke: var(--white); stroke-width: 2.5; fill: none;
+  }
+
+  /* Dynamic Mode Views inside #stage-body */
+  #stage-body {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+  }
+  .mode-view {
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mode-view.active {
+    display: flex;
+  }
+
+  /* Creative GITEX × Motion-Graphic Lockup (Inspired by Ref Images 1, 2, 3, 4) */
+  .creative-lockup {
+    max-width: 820px;
+    position: relative;
+  }
+  .eyebrow-line {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .eyebrow-dot {
+    width: 8px; height: 8px; background: var(--cobalt);
+    box-shadow: 0 0 14px var(--ice);
+  }
+  .gitex-title-cluster {
+    display: flex; align-items: flex-end; gap: 26px;
+    position: relative;
+  }
+  .title-main-stack {
+    display: flex; flex-direction: column;
+  }
+  .title-diendan {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    letter-spacing: 0.36em;
+    color: rgba(244,247,255,0.88);
+    margin-bottom: 6px;
+  }
+  .title-ma-stencil {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 86px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    position: relative;
+    display: flex; align-items: baseline; gap: 18px;
+  }
+  .script-accent {
+    font-family: 'Caveat', 'Cormorant Garamond', cursive;
+    font-weight: 700;
+    font-size: 68px;
+    color: var(--ice);
+    letter-spacing: 0.01em;
+    transform: rotate(-4deg) translateY(-4px);
+    text-shadow: 0 8px 28px rgba(36,91,255,0.75);
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .fraction-badge {
+    display: flex; align-items: center; gap: 16px;
+    padding-bottom: 10px;
+    white-space: nowrap;
+  }
+  .fraction-num {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    font-size: 68px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .fraction-num .slash {
+    color: var(--ice);
+    font-weight: 200;
+    margin: 0 2px;
+  }
+  .vertical-meta-flank {
+    display: flex; flex-direction: column; justify-content: center;
+    border-left: 1px solid rgba(99,180,255,0.45);
+    padding-left: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    color: var(--white);
+    line-height: 1.7;
+    white-space: nowrap;
+  }
+  .sector-pill-modern {
+    margin-top: 22px;
+    display: inline-flex; align-items: center; gap: 18px;
+    padding: 12px 26px;
+    background: linear-gradient(90deg, rgba(36,91,255,0.85) 0%, rgba(16,31,69,0.4) 100%);
+    border-left: 3px solid var(--ice);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px; font-weight: 600; letter-spacing: 0.28em;
+  }
+  .editorial-sub {
+    margin-top: 22px;
+    max-width: 580px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(244,247,255,0.78);
+  }
+
+  /* Minimalist Unboxed Partner Strip + Logistics Footer */
+  .bottom-footer {
+    height: 76px;
+    padding: 0 36px;
+    border-top: 1px solid rgba(99,180,255,0.18);
+    background: rgba(7,13,32,0.82);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logistics-cluster {
+    display: flex; align-items: center; gap: 42px;
+  }
+  .log-item .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; letter-spacing: 0.18em; color: var(--ice);
+  }
+  .log-item .val {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px; font-weight: 600; color: var(--white);
+  }
+  .partner-marks {
+    display: flex; align-items: center; gap: 28px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
+    color: rgba(244,247,255,0.72);
+  }
+  .partner-marks span {
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .partner-marks i {
+    color: var(--ice); font-style: normal;
+  }
+
+  /* Bottom Studio Control Dock */
+  .studio-dock {
+    position: absolute; left: 44px; right: 44px; bottom: 16px; height: 78px;
+    background: rgba(6, 11, 24, 0.94);
+    border: 1px solid rgba(99, 180, 255, 0.32);
+    backdrop-filter: blur(16px);
+    z-index: 30;
+    padding: 8px 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .dock-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .btn-group {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .ctrl-btn {
+    background: rgba(16, 31, 69, 0.55);
+    border: 1px solid rgba(99, 180, 255, 0.26);
+    color: var(--white);
+    padding: 5px 11px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .ctrl-btn:hover, .ctrl-btn.active {
+    background: var(--cobalt);
+    border-color: var(--ice);
+    box-shadow: 0 0 14px rgba(36, 91, 255, 0.55);
+  }
+  #scrubber {
+    flex: 1; accent-color: var(--cobalt); cursor: pointer;
+  }
+
+  /* Live Draft Text Editor Modal Drawer */
+  #editor-drawer {
+    position: absolute; top: 28px; right: 44px; width: 380px;
+    background: rgba(7,13,32,0.96);
+    border: 1px solid var(--ice);
+    padding: 20px;
+    z-index: 50;
+    display: none;
+    flex-direction: column; gap: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.85);
+  }
+  #editor-drawer.open { display: flex; }
+  #editor-drawer label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--ice); display: block; margin-bottom: 4px;
+  }
+  #editor-drawer input {
+    width: 100%; padding: 7px 10px;
+    background: #101F45; border: 1px solid rgba(99,180,255,0.4);
+    color: #F4F7FF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Layer 0: High-Res 3D AI Visual Plate -->
+  <div id="plate-bg" style="background-image:url('assets/plates/purple_opt01_hero_convergence.jpg');"></div>
+  <div id="plate-veil"></div>
+
+  <!-- Layer 1: Three.js WebGL 3D Scene -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Layer 2: Fluted Glass Optical Curtain -->
+  <div class="fluted-glass-strip" id="fluted-strip"></div>
+
+  <!-- Layer 3: Main Stage Viewport -->
+  <div id="stage-viewport">
+    <!-- Top Header -->
+    <div class="top-header">
+      <div class="brand-mark">
+        <div style="padding:6px 14px; background:rgba(14,22,52,0.75); border:1px solid rgba(233,213,255,0.42); border-radius:6px; box-shadow:0 0 20px rgba(155,77,255,0.35); display:flex; align-items:center;">
+          <img src="assets/vmaa_logo_white_transparent.png" style="height:40px; width:auto; display:block; filter:drop-shadow(0 0 8px rgba(155,77,255,0.65));" alt="Official VMAA Logo" />
+        </div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; letter-spacing:0.24em;">ORGANIZED BY VMAA · CENTRAL VIETNAM</div>
+          <div class="mono-tag" style="font-size:9px; color:#E9D5FF;">VIETNAM MERGERS &amp; ACQUISITIONS ASSOCIATION · HIỆP HỘI MUA BÁN VÀ SÁP NHẬP DOANH NGHIỆP VIỆT NAM</div>
+        </div>
+      </div>
+
+      <div class="mono-tag" id="scene-indicator">OPT 01 // MONOLITH CONVERGENCE · 22s OPENER</div>
+
+      <div style="display:flex; align-items:center; gap:20px;">
+        <span class="mono-tag" style="color:rgba(244,247,255,0.75);">16.0544° N, 108.2022° E · ĐÀ NẴNG</span>
+        <svg class="corner-arrow-svg" viewBox="0 0 32 32">
+          <path d="M26 6L6 26M6 26H22M6 26V10" stroke-linecap="square"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Dynamic Stage Body (6 Interactive Stage Modes) -->
+    <div id="stage-body">
+
+      <!-- MODE 1 & 2: OPENER / KEY VISUAL MASTER -->
+      <div class="mode-view active" id="view-opener">
+        <div class="creative-lockup">
+          <div class="eyebrow-line">
+            <span class="eyebrow-dot"></span>
+            <span class="mono-tag" id="txt-eyebrow">ARCHITECTURE OF VALUE · CAPITAL × TECHNOLOGY</span>
+          </div>
+
+          <div class="gitex-title-cluster">
+            <div class="title-main-stack">
+              <div class="title-diendan" id="txt-prefix">DIỄN ĐÀN</div>
+              <div class="title-ma-stencil">
+                <span id="txt-main">M&amp;A</span>
+                <span class="script-accent" id="txt-script">Miền Trung</span>
+              </div>
+            </div>
+
+            <!-- GITEX 1/2 Inspired Architectural Fraction & Flanked Date -->
+            <div class="fraction-badge">
+              <div class="fraction-num">20<span class="slash">/</span>26</div>
+              <div class="vertical-meta-flank">
+                <span>DEC 2026</span>
+                <span style="color:#63B4FF;">— ĐÀ NẴNG —</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sector-pill-modern">
+            <span id="txt-sector">REAL ESTATE — TECHNOLOGY</span>
+            <span style="color:#63B4FF;">↗</span>
+          </div>
+
+          <p class="editorial-sub" id="txt-sub">
+            Kiến trúc Giá trị Mới — Hội tụ dòng vốn đầu tư chiến lược, quỹ đất bất động sản trọng điểm và hệ sinh thái công nghệ tại tâm điểm tăng trưởng Miền Trung.
+          </p>
+        </div>
+
+        <!-- Right Floating Minimalist Telemetry (Hidden in OPT 03 so contours stay 100% clean) -->
+        <div id="right-telemetry" style="width:320px; border-left:1px solid rgba(99,180,255,0.35); padding-left:24px;">
+          <div class="mono-tag" style="margin-bottom:10px;">PROGRAM ARCHITECTURE</div>
+          <div style="font-family:'Outfit',sans-serif; font-size:13.5px; line-height:1.85; color:rgba(244,247,255,0.88); font-weight:300;">
+            <div><strong style="color:#63B4FF; font-weight:600;">13:30</strong> · VIP Deal Room &amp; Welcome</div>
+            <div><strong style="color:#63B4FF; font-weight:600;">14:15</strong> · Keynote I: Real Estate Capital</div>
+            <div><strong style="color:#63B4FF; font-weight:600;">15:15</strong> · Keynote II: Tech Valuation</div>
+            <div><strong style="color:#63B4FF; font-weight:600;">16:15</strong> · Executive M&amp;A Panel &amp; MOU</div>
+          </div>
+          <div class="mono-tag" style="margin-top:16px; color:#F4F7FF;" id="align-pct">STATE: 100% ALIGNED</div>
+        </div>
+      </div>
+
+      <!-- MODE 3: 32:9 ULTRA-WIDE CURVED STAGE (3 Concentric Spheres from Ref Image 1) -->
+      <div class="mode-view" id="view-curved">
+        <div style="width:100%; display:flex; flex-direction:column; gap:26px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+            <div>
+              <div class="mono-tag">32:9 ULTRA-WIDE CURVED AUDITORIUM STAGE LED (7680×2160)</div>
+              <div style="font-size:38px; font-weight:800; letter-spacing:-0.02em; margin-top:4px;">
+                DIỄN ĐÀN M&amp;A <span class="script-accent" style="font-size:42px;">Miền Trung</span> <span style="font-weight:200; color:#63B4FF;">20/26</span>
+              </div>
+            </div>
+            <div class="mono-tag">REAL ESTATE — TECHNOLOGY · 13.12.2026 · ĐÀ NẴNG</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:36px; align-items:center; padding:12px 0;">
+            <div style="aspect-ratio:1.6/1; border-radius:50%; background:radial-gradient(circle at 35% 30%, rgba(36,91,255,0.55), rgba(7,13,32,0.88)); border:1px solid rgba(99,180,255,0.45); display:flex; flex-direction:column; justify-content:center; padding:0 42px; box-shadow:0 0 50px rgba(36,91,255,0.25);">
+              <div class="mono-tag">01</div>
+              <div style="font-size:22px; font-weight:600; margin-top:6px;">Real Estate &amp; Strategic Landbank</div>
+              <div style="font-size:13px; color:rgba(244,247,255,0.72); margin-top:6px;">Tái cấu trúc quỹ đất đô thị, khu công nghiệp &amp; hạ tầng ven biển</div>
+            </div>
+            <div style="aspect-ratio:1.6/1; border-radius:50%; background:radial-gradient(circle at 35% 30%, rgba(99,180,255,0.5), rgba(36,91,255,0.35), rgba(7,13,32,0.9)); border:1.5px solid #63B4FF; display:flex; flex-direction:column; justify-content:center; padding:0 42px; box-shadow:0 0 65px rgba(99,180,255,0.35);">
+              <div class="mono-tag" style="color:#F4F7FF;">02</div>
+              <div style="font-size:22px; font-weight:600; margin-top:6px;">Technology &amp; Digital Valuation</div>
+              <div style="font-size:13px; color:rgba(244,247,255,0.82); margin-top:6px;">Định giá công nghệ lõi, AI, dữ liệu &amp; chuyển đổi số doanh nghiệp</div>
+            </div>
+            <div style="aspect-ratio:1.6/1; border-radius:50%; background:radial-gradient(circle at 35% 30%, rgba(36,91,255,0.55), rgba(7,13,32,0.88)); border:1px solid rgba(99,180,255,0.45); display:flex; flex-direction:column; justify-content:center; padding:0 42px; box-shadow:0 0 50px rgba(36,91,255,0.25);">
+              <div class="mono-tag">03</div>
+              <div style="font-size:22px; font-weight:600; margin-top:6px;">M&amp;A Capital Consolidation</div>
+              <div style="font-size:13px; color:rgba(244,247,255,0.72); margin-top:6px;">Hợp nhất dòng vốn tổ chức quốc tế &amp; cấu trúc thương vụ bền vững</div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid rgba(99,180,255,0.3); padding-top:10px; display:flex; justify-content:space-between;" class="mono-tag">
+            <span>▲ LOWER 22% STAGE CHAIRS &amp; PANELIST HEAD-CLEARANCE ZONE</span>
+            <span>VMAA · CENTRAL VIETNAM FORUM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODE 4: 9:16 GITEX HANGING BANNERS TRIO (Ref Images 3 & 4) -->
+      <div class="mode-view" id="view-banners">
+        <div style="width:100%; height:92%; display:grid; grid-template-columns:repeat(3, 280px); justify-content:center; gap:44px; align-items:stretch;">
+          <!-- Banner 1 -->
+          <div style="background:linear-gradient(180deg, #050A18 0%, #0E1E46 55%, #245BFF 100%); border:1px solid rgba(99,180,255,0.4); padding:26px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 24px 60px rgba(0,0,0,0.7);">
+            <div style="display:flex; justify-content:flex-end;">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#F4F7FF" stroke-width="2.8"><path d="M26 6L6 26M6 26H22M6 26V10"/></svg>
+            </div>
+            <div style="font-family:'Outfit',sans-serif; font-size:32px; font-weight:600; line-height:1.12; letter-spacing:-0.02em;">
+              Building<br>Central<br>Vietnam's<br>Capital Edge
+            </div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:0.18em; line-height:1.7; color:rgba(244,247,255,0.85);">
+              REAL ESTATE<br>TECHNOLOGY<br>DEAL FLOW<br>GROWTH
+            </div>
+          </div>
+
+          <!-- Banner 2 (Center Vertical 90° GITEX 1/2 Vietnam Lockup) -->
+          <div style="background:linear-gradient(180deg, #050A18 0%, #0E1E46 50%, #245BFF 100%); border:1px solid #63B4FF; padding:26px; display:flex; flex-direction:column; justify-content:space-between; position:relative; box-shadow:0 24px 60px rgba(0,0,0,0.7);">
+            <div style="display:flex; justify-content:flex-end;">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#F4F7FF" stroke-width="2.8"><path d="M26 6L6 26M6 26H22M6 26V10"/></svg>
+            </div>
+            <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+              <div style="transform:rotate(-90deg); white-space:nowrap; display:flex; align-items:center; gap:18px;">
+                <span style="font-family:'Plus Jakarta Sans',sans-serif; font-size:42px; font-weight:800; letter-spacing:0.12em;">VMAA</span>
+                <span style="font-family:'Outfit',sans-serif; font-size:40px; font-weight:200; color:#63B4FF;">13/12</span>
+                <div style="font-family:'Space Grotesk',sans-serif; font-size:9.5px; letter-spacing:0.22em; line-height:1.5; border-left:1px solid #63B4FF; padding-left:10px;">
+                  DEC 2026<br>— ĐÀ NẴNG —
+                </div>
+                <span class="script-accent" style="font-size:38px; transform:none;">Miền Trung</span>
+              </div>
+            </div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:9.5px; letter-spacing:0.14em; line-height:1.55; color:rgba(244,247,255,0.88);">
+              DA NANG CONVENTION CENTRE<br>REAL ESTATE — TECHNOLOGY
+            </div>
+          </div>
+
+          <!-- Banner 3 -->
+          <div style="background:linear-gradient(180deg, #050A18 0%, #0E1E46 55%, #245BFF 100%); border:1px solid rgba(99,180,255,0.4); padding:26px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 24px 60px rgba(0,0,0,0.7);">
+            <div style="display:flex; justify-content:flex-end;">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#F4F7FF" stroke-width="2.8"><path d="M26 6L6 26M6 26H22M6 26V10"/></svg>
+            </div>
+            <div style="font-family:'Outfit',sans-serif; font-size:32px; font-weight:600; line-height:1.12; letter-spacing:-0.02em;">
+              Vietnam's<br>Next<br>Investment<br>Gateway
+            </div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:0.16em; line-height:1.65; color:rgba(244,247,255,0.85);">
+              CENTRAL VIETNAM'S FUTURE<br>STARTS HERE · 13.12.2026
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODE 5: SPEAKER INTRO STINGER (Digital Chrysalis / Ouweis Madrane Style) -->
+      <div class="mode-view" id="view-speaker">
+        <div style="display:flex; align-items:center; gap:56px; width:100%;">
+          <div style="width:280px; height:340px; background:radial-gradient(circle at 50% 25%, #245BFF 0%, #070D20 85%); border:1px solid rgba(99,180,255,0.5); position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; padding:22px;">
+            <div style="position:absolute; top:16px; left:18px; right:18px; display:flex; justify-content:space-between;" class="mono-tag">
+              <span>KEYNOTE PASS</span><span>20/26</span>
+            </div>
+            <!-- Minimalist Executive Silhouette -->
+            <svg viewBox="0 0 200 220" style="width:180px; height:190px; margin:0 auto; opacity:0.88;">
+              <circle cx="100" cy="68" r="34" fill="#63B4FF"/>
+              <path d="M36 210 C36 140, 164 140, 164 210 Z" fill="#101F45" stroke="#63B4FF" stroke-width="2"/>
+            </svg>
+            <div class="mono-tag" style="text-align:center; font-size:9px;">VMAA KEYNOTE SPEAKER</div>
+          </div>
+
+          <div style="flex:1;">
+            <div class="mono-tag" style="margin-bottom:12px;">KEYNOTE ADDRESS · REAL ESTATE × TECHNOLOGY</div>
+            <div style="font-family:'Outfit',sans-serif; font-size:68px; font-weight:600; line-height:1.05; letter-spacing:-0.02em;" id="txt-sp-name">
+              TS. Nguyễn Văn A
+            </div>
+            <div style="width:100%; max-width:560px; height:1px; background:rgba(99,180,255,0.45); margin:18px 0;"></div>
+            <div style="font-size:22px; font-weight:300; color:#63B4FF;" id="txt-sp-role">
+              Chủ tịch HĐQT / Managing Partner · Quỹ Đầu tư Chiến lược
+            </div>
+            <div style="margin-top:24px; font-size:16px; color:rgba(244,247,255,0.8);">
+              Tham luận: “Kiến trúc Vốn &amp; Định giá Tài sản Số tại Miền Trung 2026–2030”
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODE 6: STRATEGIC MOU SIGNING & EXCELLENCE AWARD REVEAL -->
+      <div class="mode-view" id="view-award">
+        <div style="width:100%; text-align:center; max-width:980px; margin:0 auto;">
+          <div class="mono-tag" style="margin-bottom:14px;">CEREMONIAL MOMENT · VINH DANH &amp; KÝ KẾT CHIẾN LƯỢC</div>
+          <div style="font-family:'Outfit',sans-serif; font-size:64px; font-weight:700; letter-spacing:-0.02em;">
+            DEAL OF THE YEAR <span style="font-weight:200; color:#63B4FF;">20/26</span>
+          </div>
+          <div class="script-accent" style="font-size:52px; margin-top:-6px;">Real Estate × Technology Convergence</div>
+          <div style="margin-top:32px; display:inline-flex; align-items:center; gap:36px; padding:22px 48px; background:linear-gradient(90deg, rgba(16,31,69,0.75), rgba(36,91,255,0.45), rgba(16,31,69,0.75)); border-top:1px solid #63B4FF; border-bottom:1px solid #63B4FF;">
+            <span style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; letter-spacing:0.2em;">STRATEGIC ENTERPRISE A</span>
+            <span style="font-size:28px; color:#63B4FF;">✦</span>
+            <span style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; letter-spacing:0.2em;">CAPITAL &amp; TECH PARTNER B</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Logistics & Unboxed Partner Bar -->
+    <div class="bottom-footer">
+      <div class="logistics-cluster">
+        <div class="log-item"><div class="lbl">DATE</div><div class="val" id="txt-date">13.12.2026</div></div>
+        <div class="log-item"><div class="lbl">TIME</div><div class="val" id="txt-time">13:30–17:30</div></div>
+        <div class="log-item"><div class="lbl">LOCATION</div><div class="val" id="txt-loc">Đà Nẵng, Việt Nam</div></div>
+      </div>
+
+      <div class="partner-marks">
+        <span><i>◆</i> VMAA OFFICIAL</span>
+        <span><i>✦</i> STRATEGIC PARTNER</span>
+        <span><i>◈</i> CAPITAL FUND</span>
+        <span><i>❖</i> PROPTECH PARTNER</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Draft Text Editor Drawer -->
+  <div id="editor-drawer">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span class="mono-tag">LIVE DRAFT TEXT EDITOR</span>
+      <button class="ctrl-btn" onclick="toggleEditor()">✕ CLOSE</button>
+    </div>
+    <div>
+      <label>EVENT PREFIX</label>
+      <input type="text" value="DIỄN ĐÀN" oninput="document.getElementById('txt-prefix').textContent=this.value">
+    </div>
+    <div>
+      <label>MAIN STENCIL TITLE</label>
+      <input type="text" value="M&A" oninput="document.getElementById('txt-main').textContent=this.value">
+    </div>
+    <div>
+      <label>SIGNATURE SCRIPT ACCENT</label>
+      <input type="text" value="Miền Trung" oninput="document.getElementById('txt-script').textContent=this.value">
+    </div>
+    <div>
+      <label>SECTOR TAGLINE</label>
+      <input type="text" value="REAL ESTATE — TECHNOLOGY" oninput="document.getElementById('txt-sector').textContent=this.value">
+    </div>
+    <div>
+      <label>KEYNOTE SPEAKER NAME</label>
+      <input type="text" value="TS. Nguyễn Văn A" oninput="document.getElementById('txt-sp-name').textContent=this.value">
+    </div>
+  </div>
+
+  <!-- Studio Control Dock -->
+  <div class="studio-dock">
+    <div class="dock-row">
+      <div class="btn-group">
+        <span class="mono-tag" style="margin-right:4px;">6 ART ROUTES:</span>
+        <button class="ctrl-btn opt-btn active" onclick="setOption(1, this)">OPT 01 · MONOLITH ★</button>
+        <button class="ctrl-btn opt-btn" onclick="setOption(2, this)">OPT 02 · ASCENDING</button>
+        <button class="ctrl-btn opt-btn" onclick="setOption(3, this)">OPT 03 · CONTOURS (CLEAN)</button>
+        <button class="ctrl-btn opt-btn" onclick="setOption(4, this)">OPT 04 · TRI-PORTAL</button>
+        <button class="ctrl-btn opt-btn" onclick="setOption(5, this)">OPT 05 · ISOMETRIC</button>
+        <button class="ctrl-btn opt-btn" onclick="setOption(6, this)">OPT 06 · FLUTED PRISM ★</button>
+      </div>
+
+      <div class="btn-group">
+        <span class="mono-tag" style="margin-right:4px;">STAGE MODES:</span>
+        <button class="ctrl-btn mode-btn active" onclick="setMode('opener', this)">01 · 22s OPENER</button>
+        <button class="ctrl-btn mode-btn" onclick="setMode('kv', this)">02 · KEY VISUAL</button>
+        <button class="ctrl-btn mode-btn" onclick="setMode('curved', this)">03 · 32:9 STAGE</button>
+        <button class="ctrl-btn mode-btn" onclick="setMode('banners', this)">04 · 9:16 GITEX BANNERS</button>
+        <button class="ctrl-btn mode-btn" onclick="setMode('speaker', this)">05 · SPEAKER INTRO</button>
+        <button class="ctrl-btn mode-btn" onclick="setMode('award', this)">06 · MOU &amp; AWARD</button>
+        <button class="ctrl-btn" onclick="toggleEditor()">✎ EDIT TEXT</button>
+      </div>
+    </div>
+
+    <div class="dock-row">
+      <button class="ctrl-btn" id="btn-play" onclick="togglePlay()">❚❚ PAUSE</button>
+      <button class="ctrl-btn" id="btn-audio" onclick="toggleAudio()">🔇 AUDIO SYNTH</button>
+      <span class="mono-tag" id="tc-readout">00:18.80 / 00:22.00</span>
+      <input type="range" id="scrubber" min="0" max="22" step="0.05" value="18.8" oninput="scrubTo(this.value)">
+    </div>
+  </div>
+
+<script>
+const canvas = document.getElementById('webgl-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 0.2, 11.5);
+
+scene.add(new THREE.AmbientLight(0x2A125E, 2.5));
+const keyLight = new THREE.DirectionalLight(0xE9D5FF, 3.6);
+keyLight.position.set(7, 9, 8);
+scene.add(keyLight);
+const rimLight = new THREE.PointLight(0x9B4DFF, 5.2, 30);
+rimLight.position.set(4, 1, 5);
+scene.add(rimLight);
+const cobaltLight = new THREE.PointLight(0x245BFF, 4.2, 28);
+cobaltLight.position.set(1, -2, 6);
+scene.add(cobaltLight);
+
+const matObsidian = new THREE.MeshStandardMaterial({ color: 0x160C36, metalness: 0.85, roughness: 0.18, transparent: true, opacity: 0.78 });
+const matCobalt = new THREE.MeshPhysicalMaterial({ color: 0x9B4DFF, emissive: 0x245BFF, emissiveIntensity: 0.35, transmission: 0.82, opacity: 1, transparent: true, roughness: 0.06, ior: 1.54 });
+const matEdge = new THREE.LineBasicMaterial({ color: 0xE9D5FF, transparent: true, opacity: 0.68 });
+
+const monolithGroup = new THREE.Group();
+monolithGroup.position.set(2.6, 0.1, 0);
+scene.add(monolithGroup);
+
+let modules = [];
+let currentOption = 1;
+let currentMode = 'opener';
+let currentTime = 18.8;
+let isPlaying = true;
+let lastTimestamp = performance.now();
+
+const optPlates = {
+  1: "assets/plates/purple_opt01_hero_convergence.jpg",
+  2: "assets/plates/purple_opt02_fluted_caustics.jpg",
+  3: "assets/plates/purple_opt03_ascending_cantilevers.jpg",
+  4: "assets/plates/purple_opt04_ultraviolet_contours.jpg",
+  5: "assets/plates/purple_opt05_imperial_isometric.jpg",
+  6: "assets/plates/purple_opt06_highkey_aurora_stage.jpg"
+};
+
+const optNames = {
+  1: "TONE 01 ★ // ROYAL AMETHYST × ELECTRIC COBALT",
+  2: "TONE 02 ★ // ELECTRIC VIOLET × FLUTED CAUSTICS",
+  3: "TONE 03 ★ // NEON AMETHYST × ASCENDING CANTILEVERS",
+  4: "TONE 04 // ULTRAVIOLET × COASTAL MERIDIAN",
+  5: "TONE 05 // IMPERIAL PURPLE × CRYSTAL MATRIX",
+  6: "TONE 06 ★ // HIGH-KEY LAVENDER AURORA STAGE"
+};
+
+function clearGroup(g) {
+  while (g.children.length > 0) g.remove(g.children[0]);
+  modules = [];
+}
+
+function addBoxModule(w, h, d, tx, ty, tz, sx, sy, sz, isGlass) {
+  const geo = new THREE.BoxGeometry(w, h, d);
+  const mesh = new THREE.Mesh(geo, isGlass ? matCobalt : matObsidian);
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), matEdge);
+  mesh.add(edges);
+  monolithGroup.add(mesh);
+  modules.push({ mesh, target: new THREE.Vector3(tx, ty, tz), start: new THREE.Vector3(sx, sy, sz) });
+}
+
+function buildOptionGeometry(opt) {
+  clearGroup(monolithGroup);
+  if (opt === 1) {
+    const specs = [
+      [1.1, 3.6, 0.9,  0.0,  0.0,  0.0,  2.8,  1.6, -2.5, true],
+      [0.8, 2.8, 0.8, -0.9, -0.3,  0.4, -3.2, -1.8,  1.8, false],
+      [0.8, 3.1, 0.8,  0.9,  0.2, -0.3,  3.5, -1.4, -1.8, false],
+      [1.7, 0.5, 1.3,  0.0,  1.6,  0.2, -2.2,  3.0,  1.2, true],
+      [1.5, 0.5, 1.1,  0.2, -1.6, -0.2,  2.4, -2.8, -1.5, true]
+    ];
+    specs.forEach(s => addBoxModule(...s));
+  } else if (opt === 2) {
+    for (let i = 0; i < 7; i++) {
+      const h = 0.9 + i * 0.45;
+      const x = -2.0 + i * 0.68;
+      const y = -1.6 + h / 2;
+      addBoxModule(0.52, h, 0.7, x, y, (i % 2) * 0.25, x, y - 3.2, -2.0, i % 2 === 1);
+    }
+  } else if (opt === 3) {
+    for (let i = 0; i < 8; i++) {
+      const r = 0.65 + i * 0.28;
+      const geo = new THREE.TorusGeometry(r, 0.025, 12, 72);
+      const mesh = new THREE.Mesh(geo, i % 2 === 0 ? matCobalt : matObsidian);
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), matEdge);
+      mesh.add(edges);
+      mesh.rotation.x = 1.15;
+      monolithGroup.add(mesh);
+      modules.push({ mesh, target: new THREE.Vector3(0.4, -1.0 + i * 0.26, 0), start: new THREE.Vector3(2.8, -2.5 + i * 0.5, -2.5) });
+    }
+  } else if (opt === 4) {
+    for (let i = 0; i < 3; i++) {
+      const geo = new THREE.CylinderGeometry(1.45, 1.45, 0.16, 48);
+      const mesh = new THREE.Mesh(geo, matCobalt);
+      mesh.rotation.x = Math.PI / 2;
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), matEdge);
+      mesh.add(edges);
+      monolithGroup.add(mesh);
+      const tx = (i - 1) * 1.15;
+      modules.push({ mesh, target: new THREE.Vector3(tx, 0, i * 0.28), start: new THREE.Vector3(tx * 2.8, (i - 1) * 1.8, -3.5) });
+    }
+  } else if (opt === 5) {
+    for (let x = -1; x <= 1; x++) {
+      for (let y = -1; y <= 1; y++) {
+        for (let z = -1; z <= 1; z++) {
+          if (Math.abs(x) + Math.abs(y) + Math.abs(z) <= 2) {
+            addBoxModule(0.62, 0.62, 0.62, x * 0.72, y * 0.72, z * 0.72, x * 2.8, y * 2.8, z * 2.8, (x + y + z) % 2 === 0);
+          }
+        }
+      }
+    }
+  } else if (opt === 6) {
+    for (let i = 0; i < 11; i++) {
+      const x = -2.0 + i * 0.4;
+      addBoxModule(0.2, 3.8, 0.4, x, 0, Math.sin(i * 0.5) * 0.35, x * 1.8, (i % 2 === 0 ? 2.4 : -2.4), -2.5, true);
+    }
+  }
+}
+
+function easeInOutCubic(x) {
+  return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+}
+
+function updateSceneForTime(t) {
+  let alignFactor = 0;
+  if (t < 4.0) alignFactor = easeInOutCubic(t / 4.0) * 0.25;
+  else if (t < 10.0) alignFactor = 0.25 + easeInOutCubic((t - 4.0) / 6.0) * 0.45;
+  else if (t < 14.2) alignFactor = 0.70 + easeInOutCubic((t - 10.0) / 4.2) * 0.30;
+  else alignFactor = 1.0;
+
+  modules.forEach((m, i) => {
+    m.mesh.position.lerpVectors(m.start, m.target, alignFactor);
+    m.mesh.rotation.y = (1 - alignFactor) * (i % 2 === 0 ? 0.6 : -0.6);
+  });
+
+  monolithGroup.rotation.y = (currentOption === 5 ? 0.65 : -0.28) + Math.sin(t * 0.25) * 0.18;
+  const pctEl = document.getElementById('align-pct');
+  if (pctEl) pctEl.textContent = "STATE: " + Math.round(alignFactor * 100) + "% LOCKED";
+  document.getElementById('scene-indicator').textContent =
+    `${optNames[currentOption]} · MODE: ${currentMode.toUpperCase()} · t=${t.toFixed(1)}s`;
+}
+
+function setOption(optId, btn) {
+  currentOption = optId;
+  const btns = document.querySelectorAll('.opt-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else if (btns[optId - 1]) btns[optId - 1].classList.add('active');
+
+  document.getElementById('plate-bg').style.backgroundImage = `url('${optPlates[optId]}')`;
+  // In Option 3 (Coastal Meridian), hide right telemetry box so contours remain 100% unobstructed
+  const rt = document.getElementById('right-telemetry');
+  if (rt) rt.style.display = (optId === 3) ? 'none' : 'block';
+  document.getElementById('fluted-strip').style.opacity = (optId === 3 || optId === 4) ? '0.15' : '0.85';
+
+  buildOptionGeometry(optId);
+  updateSceneForTime(currentTime);
+}
+
+function setMode(mode, btn) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  document.querySelectorAll('.mode-view').forEach(v => v.classList.remove('active'));
+  if (mode === 'opener' || mode === 'kv') {
+    document.getElementById('view-opener').classList.add('active');
+  } else if (mode === 'curved') {
+    document.getElementById('view-curved').classList.add('active');
+  } else if (mode === 'banners') {
+    document.getElementById('view-banners').classList.add('active');
+  } else if (mode === 'speaker') {
+    document.getElementById('view-speaker').classList.add('active');
+  } else if (mode === 'award') {
+    document.getElementById('view-award').classList.add('active');
+  }
+
+  if (mode === 'opener') {
+    currentTime = 0.0;
+    isPlaying = true;
+    document.getElementById('btn-play').textContent = "❚❚ PAUSE";
+  } else {
+    currentTime = 18.8;
+    isPlaying = false;
+    document.getElementById('btn-play').textContent = "▶ PLAY";
+    updateSceneForTime(18.8);
+  }
+}
+
+function toggleEditor() {
+  document.getElementById('editor-drawer').classList.toggle('open');
+}
+
+function togglePlay() {
+  isPlaying = !isPlaying;
+  document.getElementById('btn-play').textContent = isPlaying ? "❚❚ PAUSE" : "▶ PLAY";
+}
+
+function scrubTo(val) {
+  currentTime = parseFloat(val);
+  updateSceneForTime(currentTime);
+  document.getElementById('tc-readout').textContent =
+    `00:${currentTime.toFixed(2).padStart(5, '0')} / 00:22.00`;
+}
+
+let audioCtx = null, audioActive = false, droneGain = null;
+function toggleAudio() {
+  const btn = document.getElementById('btn-audio');
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc1 = audioCtx.createOscillator();
+    const osc2 = audioCtx.createOscillator();
+    droneGain = audioCtx.createGain();
+    osc1.type = 'sine'; osc1.frequency.value = 55;
+    osc2.type = 'triangle'; osc2.frequency.value = 110;
+    droneGain.gain.value = 0.08;
+    osc1.connect(droneGain); osc2.connect(droneGain);
+    droneGain.connect(audioCtx.destination);
+    osc1.start(); osc2.start();
+    audioActive = true;
+    btn.textContent = "🔊 AUDIO ON";
+    btn.classList.add('active');
+  } else {
+    audioActive = !audioActive;
+    droneGain.gain.setTargetAtTime(audioActive ? 0.08 : 0.0, audioCtx.currentTime, 0.15);
+    btn.textContent = audioActive ? "🔊 AUDIO ON" : "🔇 AUDIO OFF";
+    btn.classList.toggle('active', audioActive);
+  }
+}
+
+function animate(now) {
+  requestAnimationFrame(animate);
+  const dt = Math.min(0.05, (now - lastTimestamp) / 1000);
+  lastTimestamp = now;
+  if (isPlaying) {
+    currentTime += dt;
+    if (currentTime > 22.0) currentTime = 0.0;
+    document.getElementById('scrubber').value = currentTime;
+    document.getElementById('tc-readout').textContent =
+      `00:${currentTime.toFixed(2).padStart(5, '0')} / 00:22.00`;
+    updateSceneForTime(currentTime);
+  } else {
+    monolithGroup.rotation.y += dt * 0.06;
+  }
+  renderer.render(scene, camera);
+}
+
+buildOptionGeometry(1);
+updateSceneForTime(currentTime);
+requestAnimationFrame(animate);
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>

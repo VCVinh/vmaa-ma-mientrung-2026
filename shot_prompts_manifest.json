@@ -1,0 +1,68 @@
+{
+  "project": "VMAA M&A MIỀN TRUNG 2026 — REAL ESTATE & TECHNOLOGY",
+  "creative_concept": "Architecture of Value",
+  "event_metadata": {
+    "organizer": "Vietnam Mergers and Acquisitions Association (VMAA)",
+    "title": "DIỄN ĐÀN M&A MIỀN TRUNG 2026",
+    "subtitle": "REAL ESTATE — TECHNOLOGY",
+    "date": "13.12.2026",
+    "time": "13:30–17:30",
+    "location": "Đà Nẵng, Việt Nam"
+  },
+  "toolchain_stack": {
+    "generation_engine": "ComfyUI (GPL-3.0)",
+    "video_model_primary": "Wan 2.2 14B I2V/T2V (Apache-2.0)",
+    "video_model_benchmark": "LTX-2.5 Audio-Video (LTX-2.x Community License - verify <$10M revenue threshold)",
+    "conditioning": "ControlNet Depth / Canny exported from Blender 4.2 z-depth pass",
+    "video_assembly": "ComfyUI-VideoHelperSuite + FFmpeg + OpenColorIO (AgX)"
+  },
+  "palette_tokens": {
+    "obsidian": "#070D20",
+    "navy": "#101F45",
+    "cobalt": "#245BFF",
+    "ice_blue": "#63B4FF",
+    "white": "#F4F7FF"
+  },
+  "shots": [
+    {
+      "shot_id": "SHOT_01_ESTABLISH",
+      "timecode": "00:00:00 - 00:04:00",
+      "duration_sec": 4.0,
+      "purpose": "Establish institutional gravity, precision, and architectural scale in deep dark space.",
+      "positive_prompt": "Minimalist luxury 3D architectural motion design shot, sparse dark obsidian (#070D20) architectural coordinate grid emerging gradually through a narrow vertical cobalt blue (#245BFF) volumetric light slit in a deep midnight navy (#101F45) void. Slow controlled 35mm dolly push-in at 0.4m/s, extreme negative space on the left third, subtle optical refraction, razor-sharp geometric lines, physically based rendering, restrained international design studio aesthetic.",
+      "negative_prompt": "accidental lettering, text, watermark, logos, glowing globes, puzzle pieces, sunset pink, warm red, stock skyline, chaotic particles, camera shake, lens flare",
+      "conditioning_input": "depth_pass_shot01_f0001_f0240.exr",
+      "deterministic_post": "Overlay hair-line Swiss coordinate grid (16.0544° N, 108.2022° E) in DaVinci Resolve / Motion Canvas."
+    },
+    {
+      "shot_id": "SHOT_02_CONNECT",
+      "timecode": "00:04:00 - 00:10:00",
+      "duration_sec": 6.0,
+      "purpose": "Reveal the connection between Real Estate (modular volumes) and Technology (luminous data filaments).",
+      "positive_prompt": "Abstract architectural motion design sequence, distinct modular monoliths of brushed dark obsidian (#070D20) and translucent cobalt glass (#245BFF) sliding along orthogonal axes into alignment. Fine luminous ice-blue (#63B4FF) data filaments trace precise geometric paths connecting the structures. Vertical fluted glass panel on the right edge refracting light caustics. Controlled 18-degree lateral camera orbit with subtle parallax, measured and precise mechanical motion.",
+      "negative_prompt": "text, letters, numbers, brand marks, malformed geometry, random turbulence, neon purple, warm orange, sci-fi clichés",
+      "conditioning_input": "depth_pass_shot02_f0241_f0600.exr",
+      "deterministic_post": "Composite exact vector spline telemetry nodes from Blender Geometry Nodes pass."
+    },
+    {
+      "shot_id": "SHOT_03_TRANSFORM",
+      "timecode": "00:10:00 - 00:16:00",
+      "duration_sec": 6.0,
+      "purpose": "Climax: Express M&A as separate structures integrating into one unified system of value.",
+      "positive_prompt": "Cinematic 3D architectural climax shot, separate dark obsidian and translucent cobalt blue (#245BFF) glass volumes interlocking with mechanical precision into one unified monumental architectural core. A controlled wave of electric ice-blue (#63B4FF) light travels vertically through the internal glass planes, revealing structural unity. Slow 50mm crane convergence, vast dark obsidian (#070D20) negative space preserved on the left half of the frame.",
+      "negative_prompt": "text, letters, logos, explosion, excessive glow, particle noise, fast cuts, camera shake, puzzle sphere",
+      "conditioning_input": "depth_pass_shot03_f0601_f0960.exr",
+      "deterministic_post": "Sync internal light wave peak to 14.2s audio harmonic lock transient."
+    },
+    {
+      "shot_id": "SHOT_04_REVEAL",
+      "timecode": "00:16:00 - 00:22:00",
+      "duration_sec": 6.0,
+      "purpose": "Resolution: Settle motion into stillness and reveal the official VMAA identity and exact Vietnamese event title.",
+      "positive_prompt": "Minimalist 3D architectural hero background plate, unified cobalt blue (#245BFF) translucent glass monolith and brushed obsidian (#070D20) columns settled in poised stillness on the right third of the frame, framed by vertical fluted glass refraction. Pure dark obsidian-to-navy (#070D20 to #101F45) negative space across the entire left two-thirds of the composition for typographic overlay. Subtle breathing rim light in ice blue (#63B4FF), locked static 50mm camera.",
+      "negative_prompt": "any text, letters, typography, numbers, logos, busy background on left side, fast motion",
+      "conditioning_input": "depth_pass_shot04_f0961_f1320.exr",
+      "deterministic_post": "Composite 100% vector SVG lockup: 'VMAA · CENTRAL VIETNAM / DIỄN ĐÀN M&A MIỀN TRUNG 2026 / REAL ESTATE — TECHNOLOGY / 13.12.2026 | 13:30–17:30 | Đà Nẵng, Việt Nam' with 6.0-second reading hold."
+    }
+  ]
+}
