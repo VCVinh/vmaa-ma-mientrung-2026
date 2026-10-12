@@ -1,0 +1,74 @@
+{
+  "project": "VMAA M&A MIỀN TRUNG 2026",
+  "version": "2.0.0",
+  "colors": {
+    "background": {
+      "obsidian": "#070D20",
+      "midnight": "#050814",
+      "surface": "#0C152E",
+      "glass": "rgba(10, 16, 38, 0.72)",
+      "panel": "rgba(14, 22, 48, 0.88)"
+    },
+    "accents": {
+      "cobalt": "#245BFF",
+      "electricBlue": "#3B82F6",
+      "iceBlue": "#38BDF8",
+      "deepViolet": "#6B2D9B",
+      "brightPurple": "#9B4DFF",
+      "lavender": "#D8B4FE",
+      "goldHighlight": "#FACC15"
+    },
+    "typography": {
+      "white": "#FFFFFF",
+      "offWhite": "#F1F5F9",
+      "muted": "#94A3B8",
+      "subtle": "#64748B"
+    },
+    "borders": {
+      "glass": "rgba(155, 77, 255, 0.35)",
+      "cobalt": "rgba(36, 91, 255, 0.45)",
+      "subtle": "rgba(255, 255, 255, 0.12)"
+    }
+  },
+  "typography": {
+    "primary": "'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif",
+    "secondary": "'Manrope', sans-serif",
+    "architectural": "'Outfit', sans-serif",
+    "weights": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800,
+      "black": 900
+    },
+    "letterSpacing": {
+      "tight": "-0.02em",
+      "normal": "0em",
+      "wide": "0.08em",
+      "ultraWide": "0.18em",
+      "eyebrow": "0.22em"
+    }
+  },
+  "motion": {
+    "easing": {
+      "luxuryEase": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "cinematic": "cubic-bezier(0.25, 1, 0.5, 1)",
+      "power3Out": "cubic-bezier(0.215, 0.61, 0.355, 1)",
+      "sharpMask": "cubic-bezier(0.77, 0, 0.175, 1)"
+    },
+    "duration": {
+      "fast": "0.3s",
+      "base": "0.6s",
+      "slow": "1.2s",
+      "reveal": "1.8s",
+      "loop": "4.5s"
+    }
+  },
+  "ratios": {
+    "portraitFeed": { "width": 1080, "height": 1350, "aspect": "4:5", "safeMargin": 72 },
+    "storyReels": { "width": 1080, "height": 1920, "aspect": "9:16", "safeMargin": 96 },
+    "square": { "width": 1080, "height": 1080, "aspect": "1:1", "safeMargin": 64 }
+  }
+}

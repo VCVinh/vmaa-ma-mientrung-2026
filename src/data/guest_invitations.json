@@ -1,0 +1,42 @@
+[
+  {
+    "id": "INV-001",
+    "name": "TS. TRẦN ĐÌNH THIÊN",
+    "title": "Nguyên Viện trưởng Viện Kinh tế Việt Nam",
+    "organization": "Tổ Tư vấn Kinh tế của Thủ tướng Chính phủ",
+    "sessionTitle": "Chủ trì Tọa đàm Kinh tế Vĩ mô & Tái cấu trúc M&A",
+    "vipCode": "VMAA-2026-VIP-001",
+    "seat": "ROW A · SEAT 01 (VIP 1)",
+    "tier": "CHỦ TRÌ TỌA ĐÀM // KEYNOTE SPEAKER"
+  },
+  {
+    "id": "INV-002",
+    "name": "ÔNG NGUYỄN VĂN AN",
+    "title": "Chủ tịch Hội đồng Quản trị & Tổng Giám đốc",
+    "organization": "Tập đoàn Bất động sản & Đầu tư Phát triển Miền Trung",
+    "sessionTitle": "Đại biểu Danh dự · Phiên Kết nối Đầu tư 1:1",
+    "vipCode": "VMAA-2026-VIP-0089",
+    "seat": "ROW A · SEAT 08 (VIP 1)",
+    "tier": "ĐẠI BIỂU DANH DỰ // VIP GUEST"
+  },
+  {
+    "id": "INV-003",
+    "name": "BÀ ĐẶNG THỊ THU HÀ",
+    "title": "Thành viên Ban Điều hành Cấp cao / Managing Partner",
+    "organization": "Quỹ Đầu tư Khởi nghiệp Sáng tạo & Tái cấu trúc M&A",
+    "sessionTitle": "Tọa đàm: Công nghệ AI trong Định giá Doanh nghiệp",
+    "vipCode": "VMAA-2026-VIP-0105",
+    "seat": "ROW A · SEAT 12 (VIP 1)",
+    "tier": "CHUYÊN GIA KHÁCH MỜI // PANEL SPEAKER"
+  },
+  {
+    "id": "INV-004",
+    "name": "MR. DAVID CHEN",
+    "title": "Managing Director / Head of Southeast Asia Investment",
+    "organization": "Global Private Capital & Sovereign Advisory Group (Singapore)",
+    "sessionTitle": "International M&A Deal Room Special Delegate",
+    "vipCode": "VMAA-2026-INT-0012",
+    "seat": "ROW A · SEAT 05 (VIP 1)",
+    "tier": "INTERNATIONAL DELEGATE // QUỐC TẾ"
+  }
+]

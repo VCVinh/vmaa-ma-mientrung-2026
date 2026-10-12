@@ -1,0 +1,123 @@
+{
+  "event": {
+    "organization": "Hiệp hội Mua bán & Sáp nhập Doanh nghiệp Việt Nam (VMAA)",
+    "organizationEn": "Vietnam Mergers & Acquisitions Association (VMAA)",
+    "shortOrg": "VMAA Miền Trung",
+    "title": "DIỄN ĐÀN M&A MIỀN TRUNG 2026",
+    "titleEn": "CENTRAL VIETNAM M&A FORUM 2026",
+    "theme": "KIẾN TRÚC GIÁ TRỊ: BẤT ĐỘNG SẢN × CÔNG NGHỆ",
+    "themeEn": "ARCHITECTURE OF VALUE: REAL ESTATE × TECHNOLOGY",
+    "date": "13.12.2026",
+    "dayOfWeek": "Chủ Nhật",
+    "time": "13:30 – 17:30",
+    "galaTime": "18:00 – 21:00",
+    "location": "Đà Nẵng, Việt Nam",
+    "venue": {
+      "status": "APPROVED_VENUE_PARTNER",
+      "name": "Ariyana Convention Centre (Furama Resort)",
+      "address": "107 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng"
+    },
+    "scale": "1,500+ Lãnh đạo Cấp cao, Quỹ Đầu tư & Doanh nghiệp",
+    "registration": {
+      "status": "OFFICIAL_PORTAL_ACTIVE",
+      "url": "https://vmaa.vn/dang-ky-mientrung-2026",
+      "hotline": "(+84) 905 123 456",
+      "email": "vip@vmaa.vn"
+    }
+  },
+  "speakers": [
+    {
+      "id": "SPK-001",
+      "name": "TS. TRẦN ĐÌNH THIÊN",
+      "title": "Nguyên Viện trưởng Viện Kinh tế Việt Nam",
+      "organization": "Tổ Tư vấn Kinh tế của Thủ tướng Chính phủ",
+      "role": "Chuyên gia Cố vấn Kinh tế Vĩ mô & Tái cấu trúc M&A",
+      "sessionTitle": "Tọa đàm Vĩ mô: Khơi thông Dòng vốn M&A Duyên hải Miền Trung",
+      "portrait": "assets/speaker_avatar_01.svg",
+      "vipCode": "VMAA-2026-VIP-001",
+      "seat": "ROW A · SEAT 01 (VIP 1)",
+      "isConfirmed": true
+    },
+    {
+      "id": "SPK-002",
+      "name": "ĐẠI DIỆN LÃNH ĐẠO UBND TP. ĐÀ NẴNG",
+      "title": "Ủy viên Ban Thường vụ Thành ủy",
+      "organization": "Ủy ban Nhân dân Thành phố Đà Nẵng",
+      "role": "Phát biểu Chỉ đạo & Định hướng Chiến lược Đầu tư M&A",
+      "sessionTitle": "Phiên Toàn thể: Quy hoạch Đô thị & Cơ chế Thu hút Vốn FDI",
+      "portrait": "assets/speaker_avatar_02.svg",
+      "vipCode": "VMAA-2026-GOV-001",
+      "seat": "ROW A · SEAT 02 (VIP 1)",
+      "isConfirmed": true
+    },
+    {
+      "id": "SPK-003",
+      "name": "CHỦ TỊCH VMAA VIỆT NAM",
+      "title": "Chủ tịch Ban Chấp hành Trung ương",
+      "organization": "Hiệp hội M&A Doanh nghiệp Việt Nam",
+      "role": "Phát biểu Khai mạc & Nghi thức Thành lập VMAA Miền Trung",
+      "sessionTitle": "Khai mạc Diễn đàn & Công bố Báo cáo Toàn cảnh M&A 2026",
+      "portrait": "assets/speaker_avatar_03.svg",
+      "vipCode": "VMAA-2026-ORG-001",
+      "seat": "ROW A · SEAT 03 (VIP 1)",
+      "isConfirmed": true
+    },
+    {
+      "id": "SPK-004",
+      "name": "MANAGING DIRECTOR — INTERNATIONAL PE FUND",
+      "title": "Managing Director / Head of Southeast Asia",
+      "organization": "Global Private Equity & Sovereign Wealth Fund",
+      "role": "Diễn giả Khách mời Quốc tế (Singapore / Hong Kong)",
+      "sessionTitle": "Phiên Chuyên đề: AI & PropTech trong Định giá Giao dịch Xuyên biên giới",
+      "portrait": "assets/speaker_avatar_04.svg",
+      "vipCode": "VMAA-2026-INT-001",
+      "seat": "ROW A · SEAT 04 (VIP 1)",
+      "isConfirmed": false,
+      "placeholderNote": "[Configurable international fund partner placeholder]"
+    }
+  ],
+  "agenda": [
+    {
+      "time": "13:30 – 14:00",
+      "title": "Đón Khách & Check-in Đại biểu VIP",
+      "details": "Thảm đỏ tiếp đón, check-in nhận diện khuôn mặt và tiệc trà Networking",
+      "track": "PLENARY"
+    },
+    {
+      "time": "14:00 – 14:45",
+      "title": "Lễ Ra Mắt VMAA Miền Trung",
+      "details": "Kích hoạt Ban Chấp hành VMAA Miền Trung & Phát biểu của Lãnh đạo TP. Đà Nẵng",
+      "track": "CEREMONY"
+    },
+    {
+      "time": "14:45 – 15:30",
+      "title": "Tham luận: Tái Cấu Trúc Bất Động Sản Duyên Hải",
+      "details": "Hoàn thiện pháp lý dự án, giải pháp khơi thông thanh khoản tài sản nghỉ dưỡng & công nghiệp",
+      "track": "REAL_ESTATE"
+    },
+    {
+      "time": "15:30 – 16:15",
+      "title": "Tham luận: Công Nghệ AI & Chuyển Đổi Số Tài Sản",
+      "details": "Ứng dụng PropTech, Digital Twin và mô hình thẩm định giá tự động bằng AI",
+      "track": "TECHNOLOGY"
+    },
+    {
+      "time": "16:15 – 17:15",
+      "title": "Tọa Đàm Cấp Cao & Ký Kết Biên Bản Ghi Nhớ (MOU)",
+      "details": "Đối thoại giữa Chủ tịch các Tập đoàn & Quỹ đầu tư; ký kết hợp tác chiến lược M&A",
+      "track": "DEAL_ROOM"
+    },
+    {
+      "time": "17:15 – 17:30",
+      "title": "Bế Mạc Phiên Diễn Đàn Chiều",
+      "details": "Tổng kết thông điệp và chuẩn bị cho Dạ tiệc Doanh nhân",
+      "track": "CLOSING"
+    },
+    {
+      "time": "18:00 – 21:00",
+      "title": "Gala Dinner & VIP Deal Room Networking",
+      "details": "Dạ tiệc doanh nhân cao cấp, vinh danh VMAA Awards và đàm phán hợp đồng 1:1 kín",
+      "track": "GALA_VIP"
+    }
+  ]
+}
