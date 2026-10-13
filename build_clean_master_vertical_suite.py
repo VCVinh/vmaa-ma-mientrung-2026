@@ -267,9 +267,6 @@ def build_clean_vertical_kv_html(w=1080, h=1350, plate_style="thap_sang", lang="
     </style></head><body>
       <div class="plate-bg"></div>
       <div class="aurora-wash"></div>
-      <div class="dragon-layer">
-        {get_dragon_bridge_svg(w=w, h=220, opacity=0.75)}
-      </div>
       <div class="readability-gradient"></div>
 
       <div class="container">
