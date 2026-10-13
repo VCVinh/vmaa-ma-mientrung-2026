@@ -4,19 +4,19 @@ base_dir = r"C:\Users\Admin\.gemini\antigravity\scratch\vmaa-ma-mientrung-2026\e
 html_path = os.path.join(base_dir, "GALLERY_PREVIEW.html")
 
 categories = {
-    "1. Dạng Đứng & Story Master (Tháp Sáng vs Pha Lê @2x Retina)": [
-        ("portrait_social/KV_v2_Story_1080x1920_ThapSang.png", "Tháp Sáng - Story 9:16 (2160x3840)"),
-        ("portrait_social/KV_v2_Portrait_1080x1350_ThapSang.png", "Tháp Sáng - Feed Dọc 4:5 (2160x2700)"),
-        ("portrait_social/KV_v2_Square_1080x1080_ThapSang.png", "Tháp Sáng - Vuông 1:1 (2160x2160)"),
-        ("portrait_social/KV_v2_Story_1080x1920_PhaLe.png", "Pha Lê - Story 9:16 (2160x3840)"),
-        ("portrait_social/KV_v2_Portrait_1080x1350_PhaLe.png", "Pha Lê - Feed Dọc 4:5 (2160x2700)"),
-        ("portrait_social/KV_v2_Square_1080x1080_PhaLe.png", "Pha Lê - Vuông 1:1 (2160x2160)")
+    "1. Hệ Thống Key Visual Pha Lê Master (@2x Retina - Không Sụt Lún Bố Cục)": [
+        ("portrait_social/KV_v2_Square_1080x1080_PhaLe.png", "Pha Lê - Vuông 1:1 Benchmark (2160x2160)"),
+        ("portrait_social/KV_v2_Portrait_1080x1350_PhaLe.png", "Pha Lê - Feed Dọc 4:5 Gold Standard (2160x2700)"),
+        ("portrait_social/KV_v2_Story_1080x1920_PhaLe.png", "Pha Lê - Story 9:16 Căn Chỉnh Chuẩn (2160x3840)"),
+        ("portrait_social/KV_v2_Portrait_1080x1350_EN.png", "Pha Lê - Feed Dọc English 4:5 (2160x2700)"),
+        ("portrait_social/KV_v2_Story_1080x1920_EN.png", "Pha Lê - Story 9:16 English (2160x3840)")
     ],
-    "2. Hero Key Visual & Sân Khấu (Landscape 16:9 & LED 32:9)": [
-        ("KV_v2_Landscape_1920x1080_VI.png", "Hero Landscape 16:9 (3840x2160 UHD)"),
-        ("KV_v2_Landscape_1920x1080_EN.png", "Hero Landscape English 16:9"),
-        ("stage_venue/KV_v2_Curved_Stage_32x9_VI.png", "Màn LED Cong 32:9 (3840x1080)"),
-        ("VMAA_2026_Production_Contact_Sheet_4K.png", "Bảng tổng hợp Contact Sheet 4K")
+    "2. Hero Key Visual & Sân Khấu (Landscape 16:9 & LED Cong 32:9)": [
+        ("KV_v2_Landscape_1920x1080_VI.png", "Hero Landscape 16:9 4K UHD (3840x2160)"),
+        ("KV_v2_Landscape_1920x1080_EN.png", "Hero Landscape English 16:9 (3840x2160)"),
+        ("stage_venue/KV_v2_Curved_Stage_32x9_VI.png", "Màn LED Sân Khấu Cong 32:9 (3840x1080)"),
+        ("stage_venue/KV_v2_Curved_Stage_32x9_EN.png", "Màn LED Sân Khấu Cong English 32:9"),
+        ("VMAA_2026_Production_Contact_Sheet_4K.png", "Bảng Tổng Hợp Contact Sheet 4K Master")
     ],
     "3. Diễn Giả & Khách Mời VIP (Crystal Fluted Suite)": [
         ("guests_motion/GUEST_01_Portrait_1080x1350.png", "Thiệp Diễn Giả Feed 4:5"),
@@ -24,13 +24,15 @@ categories = {
         ("guests_motion/GUEST_01_Square_1200x1200.png", "Thiệp Diễn Giả Vuông 1:1"),
         ("guests_motion/VMAA_Guest_LowerThird_Master.png", "Bảng tên Lower-Third Broadcast 4K")
     ],
-    "4. Ma Trận 6 Chủ Đề Social Media (42 Định Dạng)": [
-        ("social_media/POST_01_1080x1350.png", "POST 01 - Công Bố Sự Kiện (4:5)"),
-        ("social_media/POST_02_1080x1350.png", "POST 02 - Kiến Trúc Giá Trị (4:5)"),
-        ("social_media/POST_03_1080x1350.png", "POST 03 - Bất Động Sản (4:5)"),
-        ("social_media/POST_04_1080x1350.png", "POST 04 - Công Nghệ (4:5)"),
-        ("social_media/POST_05_1080x1350.png", "POST 05 - Diễn Giả (4:5)"),
-        ("social_media/POST_06_1080x1350.png", "POST 06 - Đăng Ký Tham Gia (4:5)")
+    "4. Ma Trận 6 Chủ Đề Social Media (Đã Làm Sạch 100% Chữ Nền)": [
+        ("social_media/POST_01_1080x1350.png", "POST 01 - Công Bố Sự Kiện (Feed 4:5)"),
+        ("social_media/POST_01_1080x1080.png", "POST 01 - Công Bố Sự Kiện (Vuông 1:1)"),
+        ("social_media/POST_01_1080x1920.png", "POST 01 - Công Bố Sự Kiện (Story 9:16)"),
+        ("social_media/POST_02_1080x1350.png", "POST 02 - Kiến Trúc Giá Trị (Feed 4:5)"),
+        ("social_media/POST_03_1080x1350.png", "POST 03 - Tiêu Điểm Bất Động Sản (Feed 4:5)"),
+        ("social_media/POST_04_1080x1350.png", "POST 04 - Tiêu Điểm Công Nghệ (Feed 4:5)"),
+        ("social_media/POST_05_1080x1350.png", "POST 05 - Diễn Giả Tiêu Biểu (Feed 4:5)"),
+        ("social_media/POST_06_1080x1350.png", "POST 06 - Lịch Trình & Đăng Ký (Feed 4:5)")
     ]
 }
 
