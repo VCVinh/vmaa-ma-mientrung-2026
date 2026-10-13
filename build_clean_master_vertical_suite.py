@@ -146,6 +146,8 @@ def build_clean_vertical_kv_html(w=1080, h=1350, plate_style="thap_sang", lang="
     font_sector = "38px" if not is_story else "48px"
     accent_bar_w = "44px" if not is_story else "54px"
     accent_bar_h = "3.5px" if not is_story else "4px"
+    pad_region_top = "44px" if is_story else "38px"
+    margin_region_top = "-18px" if is_story else "-14px"
 
     return f"""<!DOCTYPE html><html lang="{lang}"><head><meta charset="UTF-8">{TYPO_CSS}<style>
       body {{
@@ -218,11 +220,15 @@ def build_clean_vertical_kv_html(w=1080, h=1350, plate_style="thap_sang", lang="
         filter: drop-shadow(0 0 16px rgba(155,77,255,0.85));
       }}
       .t-region {{
-        font-weight: 800; font-size: {font_region}; line-height: 1.05; letter-spacing: -0.015em;
+        display: inline-block;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 800; font-size: {font_region}; line-height: 1.28; letter-spacing: -0.015em;
         background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 52%, #63B4FF 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 0 28px rgba(155,77,255,0.7)); margin-top: 4px;
-        padding-top: 2px; padding-bottom: 4px;
+        filter: drop-shadow(0 0 28px rgba(155,77,255,0.7));
+        margin-top: {margin_region_top};
+        padding-top: {pad_region_top};
+        padding-bottom: 8px;
       }}
       .theme-strip {{
         margin-top: 24px; display: flex; flex-direction: column; gap: 8px;
