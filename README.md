@@ -97,6 +97,10 @@ Gồm 24 ấn phẩm thiết kế riêng biệt cho 4 tỉ lệ màn hình (`108
 - **Landing Page Motion:** [`landing_page.html`](file:///C:/Users/Admin/.gemini/antigravity/scratch/vmaa-ma-mientrung-2026/landing_page.html) tích hợp GSAP ScrollTrigger và Three.js.
 - **3D Interactive Studio:** [`index.html`](file:///C:/Users/Admin/.gemini/antigravity/scratch/vmaa-ma-mientrung-2026/index.html).
 
+### 4.4. Cẩm Nang Thông Số Kỹ Thuật & Toàn Bộ Mã Nguồn (Production Manual)
+- Chi tiết toàn bộ thông số màu sắc Hex/RGB, công thức CSS Gradient hai lớp, font chữ, tọa độ crop từng tỉ lệ, mã nguồn HTML và cẩm nang hướng dẫn fix nhanh từng bước được ghi chép đầy đủ tại:  
+  👉 [**`docs/PRODUCTION_DESIGN_AND_CODE_MANUAL.md`**](./docs/PRODUCTION_DESIGN_AND_CODE_MANUAL.md)
+
 ---
 
 ## 🛠️ 5. Cấu Trúc Mã Nguồn & Scripts Sản Xuất (Architecture & Scripts)
@@ -110,6 +114,7 @@ vmaa-ma-mientrung-2026/
 │   └── plates/
 │       └── clean_phale_master_4k.png       # Đĩa sáng Pha Lê Master 4K siêu sạch
 ├── docs/
+│   ├── PRODUCTION_DESIGN_AND_CODE_MANUAL.md  # Cẩm nang thông số thiết kế, CSS & toàn bộ mã nguồn KV
 │   ├── INTERNATIONAL_MOTION_DESIGN_SYSTEM.md # Tài liệu kiến trúc hệ thống Motion quốc tế
 │   └── TOOLCHAIN_AUDIT_AND_LICENSING.md      # Đánh giá bản quyền ComfyUI, Wan 2.2, GSAP
 ├── exports/
