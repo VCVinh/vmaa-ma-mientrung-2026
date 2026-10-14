@@ -103,7 +103,37 @@ Gồm 24 ấn phẩm thiết kế riêng biệt cho 4 tỉ lệ màn hình (`108
 
 ---
 
-## 🛠️ 5. Cấu Trúc Mã Nguồn & Scripts Sản Xuất (Architecture & Scripts)
+## 🎯 5. Nhật Ký Phản Hồi & Tinh Chỉnh Bố Cục (Feedback & Iteration Notes)
+
+Quá trình tinh chỉnh các ấn phẩm Key Visual được thực hiện dựa trên phản hồi thẩm mỹ trực tiếp nhằm khắc phục triệt để các lỗi thị giác trước đây:
+
+### 5.1. Phản hồi thực tế (User Feedback & Critique)
+> **Feedback:**
+> 1. *"Bản Story 9:16 (`KV_v2_Story_1080x1920_PhaLe.png`): Bản này rất tốt ('this is good'), chỉ cần chỉnh tỉ lệ lại thôi."*
+> 2. *"3 ảnh đầu chói đập mặt mà không nhìn được chữ."* (Bao gồm các bản thử nghiệm cũ của Bản Vuông 1:1, Bản Dọc Feed 4:5 Pha Lê, và Bản Dọc Feed 4:5 Tháp Sáng).
+
+### 5.2. Chẩn đoán nguyên nhân thị giác (Root Cause Diagnostics)
+1. **Hiện tượng "Chói đập mặt mà không nhìn được chữ":**
+   - Đĩa ảnh thử nghiệm cũ (nhất là đĩa Tháp Sáng - *ThapSang*) có luồng sáng hội tụ từ mặt đất chiếu thẳng lên trời với cường độ cực đại ngay trung tâm (`#FFFFFF` bão hòa). Khi đặt tiêu đề `M&A 2026` và `BẤT ĐỘNG SẢN × CÔNG NGHỆ` đè lên luồng sáng này, chữ màu trắng bị chìm vào nền trắng chói, gây lóa mắt và triệt tiêu độ đọc (legibility collapse).
+   - Bản Tháp Sáng còn dính bóng inpainting mờ ở góc trái phía sau văn bản.
+2. **Lỗi "Bounce Vàng" trên Bản Vuông 1:1 cũ:**
+   - Phiên bản trước tích hợp dải vector Cầu Rồng uốn cong màu vàng cam (`#F59E0B` – `#FDE047`). Dải cong này cắt ngang qua phần chân chữ, gây rối mắt, tạo cảm giác chật chội và xung đột với bảng màu hoàng gia tím-cobalt cao cấp.
+3. **Lỗi sụp bố cục trên Bản Story 9:16 cũ:**
+   - Tỉ lệ dọc 9:16 khi crop ở giữa (`center center`) hoặc bên phải (`75% center`) làm khung hình zoom thẳng vào quầng sáng chói lòa, đẩy toàn bộ hàng cột ống pha lê cao vút ra ngoài khung nhìn và ép chữ xuống phần sáng gắt.
+
+### 5.3. Biện pháp kỹ thuật đã xử lý triệt để (Applied Engineering Solutions)
+- **Bản Story 9:16 (`KV_v2_Story_1080x1920_PhaLe.png`):**
+  - **Chỉnh lại tỉ lệ vàng (`background-position: 35% center`):** Tọa độ lấy mẫu x0 ≈ 950–1100px trên đĩa 4K giúp ôm trọn hàng cột ống pha lê vươn cao hùng vĩ theo chiều dọc, tận dụng vùng tối sâu thẳm bên trái làm bệ đỡ cho chữ, đưa luồng sáng sang góc phải không còn gây chói mắt.
+  - **Safe Margins chuẩn Mobile:** Bổ sung `padding-top: 80px` (tránh cụm camera/profile) và `padding-bottom: 72px` (tránh thanh gửi tin nhắn story).
+- **Bản Vuông Pha Lê 1:1 (`KV_v2_Square_1080x1080_PhaLe.png`) — *Đã gỡ bounce vàng*:**
+  - **Gỡ bỏ 100% đường cong bounce vàng:** Loại bỏ hoàn toàn layer vector cầu rồng, giải phóng không gian âm (negative space) khoáng đạt.
+  - **Lớp gradient chống chói kép:** Phủ `radial-gradient(850px 600px at 28% 60%, rgba(7,11,28,0.55)...)` và `linear-gradient(180deg, rgba(7,13,32,0.65)...)`, tạo vùng đen obsidian dịu mắt phía sau chữ, giúp toàn bộ thông điệp `M&A 2026 MIỀN TRUNG` nổi bật với độ tương phản >12:1.
+- **Bản Dọc Feed 4:5 (`KV_v2_Portrait_1080x1350_PhaLe.png` & `KV_v2_Portrait_1080x1350_ThapSang.png`):**
+  - Chuẩn hóa đồng bộ sang hệ đĩa **Pha Lê Master** (`clean_phale_master_4k.png`): phân bổ ánh sáng quang học dạt sang cánh phải, giữ 40% diện tích bên trái là nền tối fluted obsidian, triệt tiêu hoàn toàn hiện tượng lóa mắt, chữ sắc sảo và trang trọng.
+
+---
+
+## 🛠️ 6. Cấu Trúc Mã Nguồn & Scripts Sản Xuất (Architecture & Scripts)
 
 ```text
 vmaa-ma-mientrung-2026/
@@ -133,7 +163,7 @@ vmaa-ma-mientrung-2026/
 
 ---
 
-## 🚀 6. Hướng Dẫn Vận Hành (How to Run)
+## 🚀 7. Hướng Dẫn Vận Hành (How to Run)
 
 ### Cài đặt môi trường:
 ```bash
@@ -155,7 +185,7 @@ python generate_gallery.py
 
 ---
 
-## ⚖️ 7. Bản Quyền & Giấy Phép (Licensing Compliance)
+## ⚖️ 8. Bản Quyền & Giấy Phép (Licensing Compliance)
 - **Thiết kế & Nhận diện thương hiệu:** Thuộc quyền sở hữu của **Hiệp hội Mua bán và Sáp nhập Doanh nghiệp Việt Nam (VMAA)**.
 - **Mã nguồn Render & Motion Scripts:** Giấy phép **MIT License**.
 - **Bộ công cụ chuyển động & AI:** Tuân thủ đầy đủ điều khoản thương mại của Apache 2.0 (Wan 2.2), GPL-3.0 (Blender, Inkscape, ComfyUI), Webflow Permissive Commercial (GSAP 3) và MIT (Motion Canvas, Three.js).

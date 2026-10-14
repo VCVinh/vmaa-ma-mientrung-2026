@@ -42,6 +42,20 @@ $$\boxed{ \textbf{AI tạo môi trường và ánh sáng — Mã nguồn xác đ
 2. **Deterministic Typography:** 100% chữ tiêu đề, ngày, giờ, địa điểm và tên diễn giả được render bằng **HTML5/CSS3 + SVG vector + Headless Chromium (Playwright)** ở độ phân giải gấp đôi (`device_scale_factor=2` hoặc `@4K`).
 3. **Bảo tồn toàn vẹn dấu tiếng Việt:** Xử lý triệt để headroom quang học để các dấu mũ, dấu móc (`Ư, Ơ, Ê, Ô, Ằ, Ề, Ộ`) không bao giờ bị cắt ngắn (clipping) bởi bounding-box.
 
+### 1.3. Phản Hồi Trực Tiếp & Khắc Phục Lỗi Thị Giác (Feedback & Root Cause Diagnostics)
+> **Phản hồi từ Stakeholder / User:**
+> 1. *"Bản Story 9:16 (`KV_v2_Story_1080x1920_PhaLe.png`): feedback is this is good, chỉ chỉnh tỉ lệ lại thôi."*
+> 2. *"3 ảnh đầu chói đập mặt mà không nhìn được chữ."* (Gồm các bản thử nghiệm cũ của Bản Vuông 1:1, Bản Dọc Feed 4:5 Pha Lê, và Bản Dọc Feed 4:5 Tháp Sáng).
+
+- **Chẩn đoán nguyên nhân kỹ thuật:**
+  - **Lỗi chói đập mặt:** Đĩa thử nghiệm Tháp Sáng cũ có tâm sáng trắng bão hòa chiếu thẳng từ mặt đất lên đỉnh, trùng ngay vị trí đặt tiêu đề `M&A 2026` và chủ đề `BẤT ĐỘNG SẢN × CÔNG NGHỆ`. Chữ trắng đè lên nền trắng làm mất sạch độ tương phản và gây lóa mắt.
+  - **Lỗi bounce vàng:** Bản Vuông 1:1 trước đây gắn thêm dải vector Cầu Rồng màu vàng uốn cong cắt ngang qua chữ, gây cảm giác chật chội và màu sắc xung đột với sắc tím hoàng gia.
+  - **Lỗi sụp bố cục Story 9:16:** Crop sai vị trí (center/75%) làm mất toàn bộ hàng cột ống pha lê, zoom thẳng vào lõi chói.
+- **Biện pháp xử lý triệt để:**
+  - **Bản Story 9:16:** Đưa về tỉ lệ vàng `background-position: 35% center` ôm trọn ống pha lê cao vút, thêm safe margins mobile (`80px` đỉnh, `72px` đáy).
+  - **Bản Vuông 1:1:** Gỡ bỏ 100% bounce vàng, phủ gradient obsidian tối (`radial-gradient(850px 600px at 28% 60%...)`) cho chữ nổi bật sắc sảo.
+  - **Bản Dọc Feed 4:5:** Đồng bộ hóa sang hệ đĩa Pha Lê Master, đưa ánh sáng dạt sang cánh phải, vùng tối bên trái làm bệ đỡ vững chắc cho chữ với tương phản >12:1.
+
 ---
 
 ## 2. HỆ THỐNG MÀU SẮC & TYPOGRAPHY INVARIANTS
